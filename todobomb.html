@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #taskspace {
+            width: calc(100% - 90px);
+            padding: 10px;
+            margin-right: 10px;
+        }
+        #add {
+            padding: 10px 20px;
+        }
+        .tasklst {
+            list-style-type: none;
+            padding: 0;
+        }
+        .tasklst li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .tasklst li.done {
+            text-decoration: line-through;
+            background-color: #091014;
+        }
+        .tasklst li button {
+            background-color: #0e0f0e;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .task-list li button:hover {
+            background-color: #0d0f0d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <input type="text" id="taskspace" placeholder="Enter task...">
+        <button id="add">+</button>
+        <h2>Tasks</h2>
+        <ul id="tasks" class="tasklst"></ul>
+    </div>
+    <script>
+        document.getElementById('add').addEventListener('click', function() {
+            let taskText = document.getElementById('taskspace').value;
+            if (taskText === '') return;
+            let li = document.createElement('li');
+            li.innerText = taskText;
+            let doneB = document.createElement('button');
+            doneB.innerText = 'Complete';
+            doneB.addEventListener('click', function() {
+                li.classList.toggle('done');
+                document.getElementById('tasks').appendChild(li);
+                completeButton.innerText = 'Complete';
+            });
+            li.appendChild(doneB);
+            document.getElementById('tasks').appendChild(li);
+            document.getElementById('taskspace').value = '';
+        });
+    </script>
+</body>
+</html>
